@@ -1,7 +1,50 @@
-body {
-  background-color: bisque;
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.hello {
-  color: red;
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fafafa;
+}
+
+#uList {
+  background-color: white;
+  margin: 4vh 2vw;
+  padding: 1vh 1vw;
+  width: 60%;
+  box-shadow: rgb(112, 109, 109) 2px 2px 5px .8px;
+  list-style: none;
+}
+
+#uList li:not(:nth-child(1)) {
+  border-top: rgb(112, 109, 109) 1px solid;
+}
+
+#uList li {
+  padding: 5px;
+}
+
+#newTask{
+  font-style: italic;
+  border: none;
+}
+
+input[type=checkbox] {
+  margin-right: 5px;
+}
+
+input[type=checkbox] + label {
+  color: black;
+}
+
+input[type=checkbox]:checked + label {
+  color: #969696;
+  text-decoration: line-through;
+  font-style: italic;
+  margin-right: 5px;
 }

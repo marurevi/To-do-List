@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/marurevi/Webpack-boilerplate.git"
+    "url": "git+https://github.com/marurevi/To-do-List.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/marurevi/Webpack-boilerplate/issues"
+    "url": "https://github.com/marurevi/To-do-List/issues"
   },
-  "homepage": "https://github.com/marurevi/Webpack-boilerplate#readme",
+  "homepage": "https://github.com/marurevi/To-do-List#readme",
   "devDependencies": {
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
@@ -29,5 +29,6 @@
   },
   "dependencies": {
     "lodash": "^4.17.21"
-  }
+  },
+  "main": "index.js"
 }
