@@ -11,14 +11,21 @@ body {
   align-items: center;
   background-color: #fafafa;
 }
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  background-color: white;
+  box-shadow: rgb(112, 109, 109) 2px 2px 5px .8px;
+  margin: 10vh 20vw;
+  width: 60%;
+}
 
 #uList {
-  background-color: white;
-  margin: 4vh 2vw;
+  margin: 2vh 1vw;
   padding: 1vh 1vw;
-  width: 60%;
-  box-shadow: rgb(112, 109, 109) 2px 2px 5px .8px;
-  list-style: none;
+ list-style: none;
 }
 
 #uList li:not(:nth-child(1)) {
@@ -47,4 +54,11 @@ input[type=checkbox]:checked + label {
   text-decoration: line-through;
   font-style: italic;
   margin-right: 5px;
+}
+
+.clear {
+  color: #969696;
+  padding: 3vh;
+  border: none;
+  width: 100%;
 }
