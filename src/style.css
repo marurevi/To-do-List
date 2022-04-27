@@ -1,7 +1,70 @@
-body {
-  background-color: bisque;
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.hello {
-  color: red;
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fafafa;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  background-color: white;
+  box-shadow: rgb(112, 109, 109) 2px 2px 5px 0.8px;
+  margin: 10vh 20vw;
+  width: 60%;
+}
+
+#uList {
+  margin: 2vh 1vw;
+  padding: 1vh 1vw;
+  list-style: none;
+}
+
+#uList li {
+  padding: 5px;
+}
+
+#uList li:not(:nth-child(1)) {
+  border-top: rgb(112, 109, 109) 1px solid;
+}
+
+#newTask {
+  font-style: italic;
+  border: none;
+}
+
+.task-style {
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type=checkbox] {
+  margin-right: 5px;
+}
+
+input[type=checkbox] + label {
+  color: black;
+}
+
+input[type=checkbox]:checked + label {
+  color: #969696;
+  text-decoration: line-through;
+  font-style: italic;
+  margin-right: 5px;
+}
+
+.clear {
+  color: #969696;
+  padding: 3vh;
+  border: none;
+  width: 100%;
 }
