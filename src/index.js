@@ -1,40 +1,39 @@
-import _ from 'lodash';
 import './style.css';
 
 // Lodash, now imported by this script
 
 const list = document.getElementById('uList');
-//const entryTask = document.getElementById('newTask');
+// const entryTask = document.getElementById('newTask');
 
-let taskToDo = [
+const taskToDo = [
   {
     description: 'Wash the dishes',
     completed: 'false',
-    index: 0
+    index: 0,
   },
   {
     description: 'clean the house',
     completed: 'false',
-    index: 1
+    index: 1,
   },
   {
     description: 'go to the supermarket',
     completed: 'false',
-    index: 2
-  }
+    index: 2,
+  },
 ];
 
 const showList = () => {
-  for(let tsk of taskToDo) {
+  taskToDo.forEach((tsk) => {
     const task = document.createElement('li');
-      
+
     task.innerHTML = `<span><input type="checkbox" id= "${tsk.index}"><label for= "${tsk.index}">${tsk.description}</label></span><i class="fas fa-ellipsis-v"></i>`;
     task.classList.add('task-style');
     list.appendChild(task);
-  }
-} 
+  });
+};
 
-showList()
+showList();
 
 /*
 function storageAvailable(type) {
@@ -81,8 +80,9 @@ function retrivedata () {
   if (taskToDo !== 0) {
     for(let tsk of taskToDo) {
       const task = document.createElement('li');
-      
-      task.innerHTML = `<input type="checkbox" id= "${tsk.index}"><label for= "${tsk.index}">${tsk.description}</label>`;
+
+      task.innerHTML = `<input type="checkbox" id= "${tsk.index}">
+      <label for= "${tsk.index}">${tsk.description}</label>`;
       task.classList.add('task-style');
       list.appendChild(task);
     };

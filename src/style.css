@@ -11,13 +11,14 @@ body {
   align-items: center;
   background-color: #fafafa;
 }
+
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
   background-color: white;
-  box-shadow: rgb(112, 109, 109) 2px 2px 5px .8px;
+  box-shadow: rgb(112, 109, 109) 2px 2px 5px 0.8px;
   margin: 10vh 20vw;
   width: 60%;
 }
@@ -25,23 +26,23 @@ body {
 #uList {
   margin: 2vh 1vw;
   padding: 1vh 1vw;
- list-style: none;
-}
-
-#uList li:not(:nth-child(1)) {
-  border-top: rgb(112, 109, 109) 1px solid;
+  list-style: none;
 }
 
 #uList li {
   padding: 5px;
 }
 
-#newTask{
+#uList li:not(:nth-child(1)) {
+  border-top: rgb(112, 109, 109) 1px solid;
+}
+
+#newTask {
   font-style: italic;
   border: none;
 }
 
-.task-style{
+.task-style {
   display: flex;
   justify-content: space-between;
 }
