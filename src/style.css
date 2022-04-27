@@ -41,6 +41,11 @@ body {
   border: none;
 }
 
+.task-style{
+  display: flex;
+  justify-content: space-between;
+}
+
 input[type=checkbox] {
   margin-right: 5px;
 }
