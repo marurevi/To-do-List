@@ -45,6 +45,7 @@ body {
 .task-style {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 input[type=checkbox] {
@@ -60,6 +61,14 @@ input[type=checkbox]:checked + label {
   text-decoration: line-through;
   font-style: italic;
   margin-right: 5px;
+}
+
+.menu {
+  font-size: x-large;
+  font-weight: bold;
+  background-color: white;
+  border: none;
+  transform: rotate(90deg);  
 }
 
 .clear {
