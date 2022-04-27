@@ -1,6 +1,5 @@
 const entryTask = document.getElementById('newTask');
 
-
 function storageAvailable(type) {
   try {
     var storage = window[type],
@@ -47,15 +46,17 @@ export function retrivedata () {
     
   for(let tsk of taskToDo) {
     const task = document.createElement('li');
-    task.innerHTML = `<span><input type="checkbox" id= "${tsk.index}">
-    <label for= "${tsk.index}">${tsk.description}</label></span>
-    <button type="button" class= "menu">...</button>`;
+    task.innerHTML = `<span><input type="checkbox" id= "id-${tsk.index}">
+    <label for= "id-${tsk.index}">${tsk.description}</label></span>
+    <button type="button" class= "menu" id="${tsk.index}">...</button>`;
     task.classList.add('task-style');
     list.appendChild(task);
   };
+
+  const menuBtn = document.querySelectorAll('.menu');
+  menuBtn.forEach(btn => btn.addEventListener('click', function (e){
+    taskToDo.splice(e.this, 1);
+    localStorage.setItem('toDoList', JSON.stringify(taskToDo));
+    retrivedata();
+  }));
 }
-
-
-
-
-
