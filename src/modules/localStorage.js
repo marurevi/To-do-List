@@ -52,10 +52,14 @@ export function retrivedata () {
     task.classList.add('task-style');
     list.appendChild(task);
   };
-
+  
   const menuBtn = document.querySelectorAll('.menu');
   menuBtn.forEach(btn => btn.addEventListener('click', function (e){
     taskToDo.splice(e.this, 1);
+    
+    for (let i=0; i<taskToDo.length; i+=1) {
+      taskToDo[i].index = i;
+    }
     localStorage.setItem('toDoList', JSON.stringify(taskToDo));
     retrivedata();
   }));
