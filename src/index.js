@@ -1,9 +1,11 @@
 import './style.css';
 import { savedata, retrivedata } from './modules/localStorage';
 
+
 const entryTask = document.getElementById('newTask');
 const clearBtn = document.querySelector('.clear');
 let taskToDo = JSON.parse(localStorage.getItem('toDoList')) || [];
+
 
 entryTask.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
@@ -11,7 +13,8 @@ entryTask.addEventListener('keypress', (e) => {
     entryTask.value = null;
     retrivedata();
   }
-});
+})
+
 
 clearBtn.addEventListener('click', () => {
   taskToDo = [];
@@ -20,4 +23,3 @@ clearBtn.addEventListener('click', () => {
 })
 
 window.addEventListener('load', retrivedata);
-

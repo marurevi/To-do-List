@@ -10,6 +10,17 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #fafafa;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.disable-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; 
 }
 
 .container {
@@ -40,12 +51,18 @@ body {
 #newTask {
   font-style: italic;
   border: none;
+  width: 98%;
+  padding: 5px;
 }
 
 .task-style {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.bkground {
+  background-color: rgb(245, 245, 171);
 }
 
 input[type=checkbox] {
@@ -66,9 +83,20 @@ input[type=checkbox]:checked + label {
 .menu {
   font-size: x-large;
   font-weight: bold;
+  background-image: url(./icons/dots.svg);
+  background-repeat: no-repeat;
   background-color: white;
+  color: transparent;
   border: none;
-  transform: rotate(90deg);  
+  filter:blur(.8)
+}
+
+.menu:focus,
+.menu::after {
+  background-image: url(./icons/trashcan.svg);
+  background-repeat: no-repeat;
+  background-color: rgb(245, 245, 171);
+  border: none;  
 }
 
 .clear {
@@ -77,3 +105,4 @@ input[type=checkbox]:checked + label {
   border: none;
   width: 100%;
 }
+

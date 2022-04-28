@@ -1,6 +1,6 @@
 const entryTask = document.getElementById('newTask');
 
-function storageAvailable(type) {
+const storageAvailable = (type) => {
   try {
     var storage = window[type],
         x = '__storage_test__';
@@ -24,7 +24,7 @@ function storageAvailable(type) {
   }
 }
 
-export function savedata () {
+export const savedata = () => {
     let taskToDo = JSON.parse(localStorage.getItem('toDoList')) || [];
   if (storageAvailable('localStorage')) {
     const obj = {
@@ -39,7 +39,7 @@ export function savedata () {
   }
 }
 
-export function retrivedata () {
+export const retrivedata = () => {
   let taskToDo = JSON.parse(localStorage.getItem('toDoList')) || [];
   let list = document.getElementById('uList');
   document.querySelectorAll('.task-style').forEach(t => t.remove());
@@ -47,20 +47,35 @@ export function retrivedata () {
   for(let tsk of taskToDo) {
     const task = document.createElement('li');
     task.innerHTML = `<span><input type="checkbox" id= "id-${tsk.index}">
-    <label for= "id-${tsk.index}">${tsk.description}</label></span>
-    <button type="button" class= "menu" id="${tsk.index}">...</button>`;
+    <label for= "id-${tsk.index}" id="lb-${tsk.index}">${tsk.description}</label></span>
+    <button type="button" class= "menu" id="${tsk.index}">__</button>`;
     task.classList.add('task-style');
+    task.id = `li-${tsk.index}`;
     list.appendChild(task);
   };
+
+  const checkBox = document.querySelectorAll('input[type=checkbox]');
+
+  checkBox.forEach(box => box.onclick = () => {
+    const num = [...`${box.id}`].splice(3).pop();
+    (box.checked)? taskToDo[num].completed = true: taskToDo[num].completed = false;
+    localStorage.setItem('toDoList', JSON.stringify(taskToDo));
+  })
   
   const menuBtn = document.querySelectorAll('.menu');
-  menuBtn.forEach(btn => btn.addEventListener('click', function (e){
-    taskToDo.splice(e.this, 1);
+  menuBtn.forEach(btn => btn.addEventListener('click', (e) => {
+    document.getElementById(`li-${e.target.id}`).classList.toggle('bkground');
+    document.getElementById(`li-${e.target.id}`).classList.toggle('disable-select');
+    if (taskToDo[e.target.id].completed) {
+      taskToDo.splice(e.target.id, 1);
     
-    for (let i=0; i<taskToDo.length; i+=1) {
-      taskToDo[i].index = i;
+      for (let i=0; i<taskToDo.length; i+=1) {
+        taskToDo[i].index = i;
+      }
+  
+      localStorage.setItem('toDoList', JSON.stringify(taskToDo));
+      retrivedata();
     }
-    localStorage.setItem('toDoList', JSON.stringify(taskToDo));
-    retrivedata();
+    
   }));
 }
