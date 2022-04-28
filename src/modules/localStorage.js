@@ -25,7 +25,7 @@ const storageAvailable = (type) => {
 export const savedata = () => {
   const listOnStorage = JSON.parse(localStorage.getItem('toDoList')) || [];
   if (storageAvailable('localStorage')) {
-    const listElement = new Task (`${entryTask.value}`, false, JSON.parse(`${listOnStorage.length}`));
+    const listElement = new Task (`${entryTask.value}`, false, JSON.parse(`${listOnStorage.length+1}`));
     listOnStorage.push(listElement);
     localStorage.setItem('toDoList', JSON.stringify(listOnStorage));
   }
@@ -52,7 +52,9 @@ export const retrivedata = () => {
   const checkBox = document.querySelectorAll('input[type=checkbox]');
 
   checkBox.forEach((box) => box.addEventListener('click', () => {
-    const num = [...`${box.id}`].splice(3).pop();
+    const num = [...`${box.id}`].splice(3).pop() - 1;
+    console.log(num)
+    
     if (box.checked) {
       listOnStorage[num].completed = true;
     } else {
@@ -65,11 +67,11 @@ export const retrivedata = () => {
   menuBtn.forEach((btn) => btn.addEventListener('click', (e) => {
     document.getElementById(`li-${e.target.id}`).classList.toggle('editableMode');
 
-    if (listOnStorage[e.target.id].completed) {
-      listOnStorage.splice(e.target.id, 1);
+    if (listOnStorage[e.target.id -1].completed) {
+      listOnStorage.splice((e.target.id - 1), 1);
 
-      for (let i = 0; i < listOnStorage.length; i += 1) {
-        listOnStorage[i].index = i;
+      for (let i = 1; i < listOnStorage.length+1; i += 1) {
+        listOnStorage[i-1].index = i;
       }
 
       localStorage.setItem('toDoList', JSON.stringify(listOnStorage));
