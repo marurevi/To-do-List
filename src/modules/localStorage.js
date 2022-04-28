@@ -1,3 +1,4 @@
+import Task from "./taskModule.js";
 const entryTask = document.getElementById('newTask');
 
 const storageAvailable = (type) => {
@@ -22,57 +23,53 @@ const storageAvailable = (type) => {
 };
 
 export const savedata = () => {
-  const taskToDo = JSON.parse(localStorage.getItem('toDoList')) || [];
+  const listOnStorage = JSON.parse(localStorage.getItem('toDoList')) || [];
   if (storageAvailable('localStorage')) {
-    const obj = {
-      description: `${entryTask.value}`,
-      completed: false,
-      index: JSON.parse(`${taskToDo.length}`),
-    };
-    taskToDo.push(obj);
-    localStorage.setItem('toDoList', JSON.stringify(taskToDo));
+    const listElement = new Task (`${entryTask.value}`, false, JSON.parse(`${listOnStorage.length}`));
+    listOnStorage.push(listElement);
+    localStorage.setItem('toDoList', JSON.stringify(listOnStorage));
   }
 };
 
 export const retrivedata = () => {
-  const taskToDo = JSON.parse(localStorage.getItem('toDoList')) || [];
-  const list = document.getElementById('uList');
+  const listOnStorage = JSON.parse(localStorage.getItem('toDoList')) || [];
+  const listDisplay = document.getElementById('uList');
   document.querySelectorAll('.task-style').forEach((t) => t.remove());
 
-  taskToDo.forEach((tsk) => {
-    const task = document.createElement('li');
-    task.innerHTML = `<span><input type="checkbox" id= "id-${tsk.index}">
+  listOnStorage.forEach((tsk) => {
+    const line = document.createElement('li');
+    line.innerHTML = `<span><input type="checkbox" id= "id-${tsk.index}">
     <label for= "id-${tsk.index}" id="lb-${tsk.index}">${tsk.description}</label></span>
     <i class= "menu" id="${tsk.index}">__</i>`;
-    task.classList.add('task-style');
-    task.id = `li-${tsk.index}`;
-    list.appendChild(task);
+    line.classList.add('task-style');
+    line.id = `li-${tsk.index}`;
+    listDisplay.appendChild(line);
   });
-
+  /* Checkbox part */
   const checkBox = document.querySelectorAll('input[type=checkbox]');
 
   checkBox.forEach((box) => box.addEventListener('click', () => {
     const num = [...`${box.id}`].splice(3).pop();
     if (box.checked) {
-      taskToDo[num].completed = true;
+      listOnStorage[num].completed = true;
     } else {
-      taskToDo[num].completed = false;
+      listOnStorage[num].completed = false;
     }
-    localStorage.setItem('toDoList', JSON.stringify(taskToDo));
+    localStorage.setItem('toDoList', JSON.stringify(listOnStorage));
   }));
-
+ /* EraseBtn part */
   const menuBtn = document.querySelectorAll('.menu');
   menuBtn.forEach((btn) => btn.addEventListener('click', (e) => {
     document.getElementById(`li-${e.target.id}`).classList.toggle('bkground');
     document.getElementById(`lb-${e.target.id}`).toggleAttribute('contentEditable');
-    if (taskToDo[e.target.id].completed) {
-      taskToDo.splice(e.target.id, 1);
+    if (listOnStorage[e.target.id].completed) {
+      listOnStorage.splice(e.target.id, 1);
 
-      for (let i = 0; i < taskToDo.length; i += 1) {
-        taskToDo[i].index = i;
+      for (let i = 0; i < listOnStorage.length; i += 1) {
+        listOnStorage[i].index = i;
       }
 
-      localStorage.setItem('toDoList', JSON.stringify(taskToDo));
+      localStorage.setItem('toDoList', JSON.stringify(listOnStorage));
       retrivedata();
     }
   }));

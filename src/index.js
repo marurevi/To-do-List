@@ -3,8 +3,9 @@ import { savedata, retrivedata } from './modules/localStorage.js';
 
 const entryTask = document.getElementById('newTask');
 const clearBtn = document.querySelector('.clear');
-let taskToDo = JSON.parse(localStorage.getItem('toDoList')) || [];
+let listOnStorage = JSON.parse(localStorage.getItem('toDoList')) || [];
 
+/* Add new value */
 entryTask.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     savedata();
@@ -13,9 +14,10 @@ entryTask.addEventListener('keypress', (e) => {
   }
 });
 
+/* Erase all completed task --fix (erase all list) */
 clearBtn.addEventListener('click', () => {
-  taskToDo = [];
-  localStorage.setItem('toDoList', JSON.stringify(taskToDo));
+  listOnStorage = [];
+  localStorage.setItem('toDoList', JSON.stringify(listOnStorage));
   retrivedata();
 });
 
