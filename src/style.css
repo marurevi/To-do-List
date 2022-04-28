@@ -50,20 +50,25 @@ body {
   align-items: center;
 }
 
-.bkground {
+.editableMode {
   background-color: rgb(245, 245, 171);
 }
 
 input[type=checkbox] {
   margin-right: 5px;
+  color: black;
   cursor: pointer;
 }
 
-input[type=checkbox] + label {
+input[type=text] {
+  border: none;
+  background-color: transparent;
   color: black;
+  padding: 4px;
+  font-size: medium;
 }
 
-input[type=checkbox]:checked + label {
+input[type=checkbox]:checked + input[type=text] {
   color: #969696;
   text-decoration: line-through;
   font-style: italic;
@@ -94,3 +99,5 @@ input[type=checkbox]:checked + label {
   border: none;
   width: 100%;
 }
+
+

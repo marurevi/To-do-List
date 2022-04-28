@@ -38,8 +38,11 @@ export const retrivedata = () => {
 
   listOnStorage.forEach((tsk) => {
     const line = document.createElement('li');
-    line.innerHTML = `<span><input type="checkbox" id= "id-${tsk.index}">
-    <label for= "id-${tsk.index}" id="lb-${tsk.index}">${tsk.description}</label></span>
+    line.innerHTML = `
+    <span>
+      <input type="checkbox" id= "id-${tsk.index}">
+      <input type="text" id="tx-${tsk.index}" value= "${tsk.description}" disabled>
+    </span>
     <i class= "menu" id="${tsk.index}">__</i>`;
     line.classList.add('task-style');
     line.id = `li-${tsk.index}`;
@@ -60,8 +63,8 @@ export const retrivedata = () => {
  /* EraseBtn part */
   const menuBtn = document.querySelectorAll('.menu');
   menuBtn.forEach((btn) => btn.addEventListener('click', (e) => {
-    document.getElementById(`li-${e.target.id}`).classList.toggle('bkground');
-    document.getElementById(`lb-${e.target.id}`).toggleAttribute('contentEditable');
+    document.getElementById(`li-${e.target.id}`).classList.toggle('editableMode');
+
     if (listOnStorage[e.target.id].completed) {
       listOnStorage.splice(e.target.id, 1);
 
