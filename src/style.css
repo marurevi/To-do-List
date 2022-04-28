@@ -80,8 +80,9 @@ input[type=checkbox]:checked + label {
   color: transparent;
   cursor: pointer;
 }
+
 .menu:active,
-.menu::after { 
+.menu::after {
   background-image: url(./icons/trashcan.svg);
   background-repeat: no-repeat;
   background-color: transparent;
