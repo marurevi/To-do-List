@@ -10,17 +10,6 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #fafafa;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.disable-select {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; 
 }
 
 .container {
@@ -67,6 +56,7 @@ body {
 
 input[type=checkbox] {
   margin-right: 5px;
+  cursor: pointer;
 }
 
 input[type=checkbox] + label {
@@ -78,25 +68,23 @@ input[type=checkbox]:checked + label {
   text-decoration: line-through;
   font-style: italic;
   margin-right: 5px;
+  pointer-events: all;
 }
 
-.menu {
+.menu,
+.menu::before {
   font-size: x-large;
   font-weight: bold;
   background-image: url(./icons/dots.svg);
   background-repeat: no-repeat;
-  background-color: white;
   color: transparent;
-  border: none;
-  filter:blur(.8)
+  cursor: pointer;
 }
-
-.menu:focus,
-.menu::after {
+.menu:active,
+.menu::after { 
   background-image: url(./icons/trashcan.svg);
   background-repeat: no-repeat;
-  background-color: rgb(245, 245, 171);
-  border: none;  
+  background-color: transparent;
 }
 
 .clear {
@@ -105,4 +93,3 @@ input[type=checkbox]:checked + label {
   border: none;
   width: 100%;
 }
-

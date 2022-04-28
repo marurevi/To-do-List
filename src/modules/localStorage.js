@@ -48,7 +48,7 @@ export const retrivedata = () => {
     const task = document.createElement('li');
     task.innerHTML = `<span><input type="checkbox" id= "id-${tsk.index}">
     <label for= "id-${tsk.index}" id="lb-${tsk.index}">${tsk.description}</label></span>
-    <button type="button" class= "menu" id="${tsk.index}">__</button>`;
+    <i class= "menu" id="${tsk.index}">__</i>`;
     task.classList.add('task-style');
     task.id = `li-${tsk.index}`;
     list.appendChild(task);
@@ -65,7 +65,7 @@ export const retrivedata = () => {
   const menuBtn = document.querySelectorAll('.menu');
   menuBtn.forEach(btn => btn.addEventListener('click', (e) => {
     document.getElementById(`li-${e.target.id}`).classList.toggle('bkground');
-    document.getElementById(`li-${e.target.id}`).classList.toggle('disable-select');
+    document.getElementById(`lb-${e.target.id}`).toggleAttribute('contentEditable');
     if (taskToDo[e.target.id].completed) {
       taskToDo.splice(e.target.id, 1);
     
