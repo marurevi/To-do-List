@@ -1,4 +1,3 @@
-import Task from "./taskModule.js";
 const entryTask = document.getElementById('newTask');
 
 const storageAvailable = (type) => {
@@ -25,7 +24,15 @@ const storageAvailable = (type) => {
 export const savedata = () => {
   const listOnStorage = JSON.parse(localStorage.getItem('toDoList')) || [];
   if (storageAvailable('localStorage')) {
-    const listElement = new Task (`${entryTask.value}`, false, JSON.parse(`${listOnStorage.length+1}`));
+    class Task {
+      constructor(description, completed = false, index) {
+        this.description = description,
+        this.completed = completed,
+        this.index = index;
+      }
+    }
+
+    const listElement = new Task(`${entryTask.value}`, false, JSON.parse(`${listOnStorage.length + 1}`));
     listOnStorage.push(listElement);
     localStorage.setItem('toDoList', JSON.stringify(listOnStorage));
   }
@@ -54,7 +61,7 @@ export const retrivedata = () => {
 
   checkBox.forEach((box) => box.addEventListener('click', () => {
     const num = [...`${box.id}`].splice(3).pop() - 1;
-    
+
     if (box.checked) {
       listOnStorage[num].completed = true;
     } else {
@@ -62,8 +69,8 @@ export const retrivedata = () => {
     }
     localStorage.setItem('toDoList', JSON.stringify(listOnStorage));
   }));
-  
- /* Edition mode */
+
+  /* Edition mode */
   const menuBtn = document.querySelectorAll('.menu');
   menuBtn.forEach((btn) => btn.addEventListener('click', (e) => {
     const line = document.getElementById(`li-${e.target.id}`);
@@ -71,27 +78,27 @@ export const retrivedata = () => {
     const indice = e.target.id;
 
     /* Erase Task */
-    if (listOnStorage[indice -1].completed) {
+    if (listOnStorage[indice - 1].completed) {
       listOnStorage.splice((indice - 1), 1);
 
-      for (let i = 1; i < listOnStorage.length+1; i += 1) {
-        listOnStorage[i-1].index = i;
+      for (let i = 1; i < listOnStorage.length + 1; i += 1) {
+        listOnStorage[i - 1].index = i;
       }
 
       localStorage.setItem('toDoList', JSON.stringify(listOnStorage));
       retrivedata();
     }
-    
+
     /* Edit Task */
     const taskEditable = document.getElementById(`tx-${indice}`);
-    taskEditable.disabled= false;
-    document.addEventListener('keypress', (i) => { 
-      listOnStorage[indice -1].description = i.target.value;
-      if ( i.key === 'Enter') {
+    taskEditable.disabled = false;
+    document.addEventListener('keypress', (i) => {
+      listOnStorage[indice - 1].description = i.target.value;
+      if (i.key === 'Enter') {
         localStorage.setItem('toDoList', JSON.stringify(listOnStorage));
-        taskEditable.disabled= true;
-        retrivedata()
-      }    
+        taskEditable.disabled = true;
+        retrivedata();
+      }
     });
   }));
 };

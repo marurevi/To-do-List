@@ -16,8 +16,8 @@ entryTask.addEventListener('keypress', (e) => {
 
 /* Erase all completed task */
 clearBtn.addEventListener('click', () => {
-  localStorage.setItem('toDoList', JSON.stringify(listOnStorage.filter(item => item.completed === true)));
+  localStorage.setItem('toDoList', JSON.stringify(listOnStorage.filter((item) => item.completed === true)));
   retrivedata();
-})
+});
 
 window.addEventListener('load', retrivedata);
