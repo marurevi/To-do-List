@@ -1,3 +1,4 @@
+import Task from "./taskModule.js";
 const entryTask = document.getElementById('newTask');
 
 const storageAvailable = (type) => {
@@ -24,15 +25,6 @@ const storageAvailable = (type) => {
 export const savedata = () => {
   const listOnStorage = JSON.parse(localStorage.getItem('toDoList')) || [];
   if (storageAvailable('localStorage')) {
-    /* eslint-disable */ 
-    class Task {
-      constructor(description, completed = false, index) {
-        this.description = description,
-        this.completed = completed,
-        this.index = index
-      }
-    }
-    /* eslint-ensable */ 
     const listElement = new Task(`${entryTask.value}`, false, JSON.parse(`${listOnStorage.length + 1}`));
     listOnStorage.push(listElement);
     localStorage.setItem('toDoList', JSON.stringify(listOnStorage));
