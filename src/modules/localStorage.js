@@ -48,12 +48,12 @@ export const retrivedata = () => {
     line.id = `li-${tsk.index}`;
     listDisplay.appendChild(line);
   });
+
   /* Checkbox part */
   const checkBox = document.querySelectorAll('input[type=checkbox]');
 
   checkBox.forEach((box) => box.addEventListener('click', () => {
     const num = [...`${box.id}`].splice(3).pop() - 1;
-    console.log(num)
     
     if (box.checked) {
       listOnStorage[num].completed = true;
@@ -62,11 +62,15 @@ export const retrivedata = () => {
     }
     localStorage.setItem('toDoList', JSON.stringify(listOnStorage));
   }));
- /* EraseBtn part */
+  
+ /* Edition mode */
   const menuBtn = document.querySelectorAll('.menu');
   menuBtn.forEach((btn) => btn.addEventListener('click', (e) => {
-    document.getElementById(`li-${e.target.id}`).classList.toggle('editableMode');
+    const line = document.getElementById(`li-${e.target.id}`);
+    line.classList.toggle('editableMode');
+    const indice = e.target.id - 1;
 
+    /* Erase Task */
     if (listOnStorage[e.target.id -1].completed) {
       listOnStorage.splice((e.target.id - 1), 1);
 
@@ -77,5 +81,17 @@ export const retrivedata = () => {
       localStorage.setItem('toDoList', JSON.stringify(listOnStorage));
       retrivedata();
     }
+  
+    /* Edit Task */
+    const taskEditable = document.getElementById(`tx-${e.target.id}`);
+    taskEditable.disabled= false;
+    taskEditable.addEventListener('change', (i) => { 
+      listOnStorage[e.target.id -1].description = i.target.value;
+      if (EventTarget === 'Enter') {
+        localStorage.setItem('toDoList', JSON.stringify(listOnStorage));
+        taskEditable.disabled= true;
+        retrivedata();
+      }    
+    });
   }));
 };
