@@ -1,5 +1,14 @@
 const entryTask = document.getElementById('newTask');
 
+/* eslint-disable */
+export default class Task {
+  constructor(description, completed = false, index) {
+    this.description = description,
+    this.completed = completed,
+    this.index = index
+  }
+}
+/* elint-enable */
 const storageAvailable = (type) => {
   try {
     const storage = window[type];
@@ -23,16 +32,8 @@ const storageAvailable = (type) => {
 
 export const savedata = () => {
   const listOnStorage = JSON.parse(localStorage.getItem('toDoList')) || [];
-  if (storageAvailable('localStorage')) {
-    /* eslint-disable */ 
-    class Task {
-      constructor(description, completed = false, index) {
-        this.description = description,
-        this.completed = completed,
-        this.index = index
-      }
-    }
-    /* eslint-ensable */ 
+  if (storageAvailable('localStorage')) 
+    {
     const listElement = new Task(`${entryTask.value}`, false, JSON.parse(`${listOnStorage.length + 1}`));
     listOnStorage.push(listElement);
     localStorage.setItem('toDoList', JSON.stringify(listOnStorage));
