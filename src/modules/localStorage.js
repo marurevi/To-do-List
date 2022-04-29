@@ -1,4 +1,5 @@
-import Task from "./taskModule.js";
+import Task from './taskModule.js';
+
 const entryTask = document.getElementById('newTask');
 
 const storageAvailable = (type) => {
