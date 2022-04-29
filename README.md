@@ -1,8 +1,7 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# To Do list: list structure
-
-> In this project, I built a simple HTML list of To Do tasks. This simple web page was builted using webpack and served by a webpack dev server.
+# To Do list: add & remove
+> In this project, I implemented the CRUD (create, update, delete) methods.
 
 ## Built With
 
@@ -67,6 +66,9 @@ Give a ⭐️ if you like this project!
 - Microverse
 - Webpack official page
 - etc
+- <a href="https://iconscout.com/icons/dots" target="_blank">Dots Icon</a> by <a href="https://iconscout.com/contributors/daniel-bruce">Daniel Bruce</a> on <a href="https://iconscout.com">Iconscout</a>
+- <a href="https://iconscout.com/icons/trashcan" target="_blank">Trashcan Icon</a> by <a href="https://iconscout.com/contributors/github">Github</a> on <a href="https://iconscout.com">Iconscout</a>
+- <a href="https://iconscout.com/icons/cycle" target="_blank">Cycle Icon</a> by <a href="https://iconscout.com/contributors/daniel-bruce">Daniel Bruce</a> on <a href="https://iconscout.com">Iconscout</a>
 
 ## 📝 License
 

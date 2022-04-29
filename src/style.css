@@ -40,26 +40,57 @@ body {
 #newTask {
   font-style: italic;
   border: none;
+  width: 98%;
+  padding: 5px;
 }
 
 .task-style {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.editableMode {
+  background-color: rgb(245, 245, 171);
 }
 
 input[type=checkbox] {
   margin-right: 5px;
-}
-
-input[type=checkbox] + label {
   color: black;
+  cursor: pointer;
 }
 
-input[type=checkbox]:checked + label {
+input[type=text] {
+  border: none;
+  background-color: transparent;
+  color: black;
+  padding: 4px;
+  font-size: medium;
+}
+
+input[type=checkbox]:checked + input[type=text] {
   color: #969696;
   text-decoration: line-through;
   font-style: italic;
   margin-right: 5px;
+  pointer-events: all;
+}
+
+.menu,
+.menu::before {
+  font-size: x-large;
+  font-weight: bold;
+  background-image: url(./icons/dots.svg);
+  background-repeat: no-repeat;
+  color: transparent;
+  cursor: pointer;
+}
+
+.menu:active,
+.menu::after {
+  background-image: url(./icons/trashcan.svg);
+  background-repeat: no-repeat;
+  background-color: transparent;
 }
 
 .clear {

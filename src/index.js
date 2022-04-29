@@ -1,33 +1,23 @@
 import './style.css';
+import { savedata, retrivedata } from './modules/localStorage.js';
 
-const list = document.getElementById('uList');
+const entryTask = document.getElementById('newTask');
+const clearBtn = document.querySelector('.clear');
+const listOnStorage = JSON.parse(localStorage.getItem('toDoList'));
 
-const taskToDo = [
-  {
-    description: 'Wash the dishes',
-    completed: 'false',
-    index: 0,
-  },
-  {
-    description: 'clean the house',
-    completed: 'false',
-    index: 1,
-  },
-  {
-    description: 'go to the supermarket',
-    completed: 'false',
-    index: 2,
-  },
-];
+/* Add new value */
+entryTask.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    savedata();
+    entryTask.value = null;
+    retrivedata();
+  }
+});
 
-const showList = () => {
-  taskToDo.forEach((tsk) => {
-    const task = document.createElement('li');
+/* Erase all completed task */
+clearBtn.addEventListener('click', () => {
+  localStorage.setItem('toDoList', JSON.stringify(listOnStorage.filter((item) => item.completed === false)));
+  retrivedata();
+});
 
-    task.innerHTML = `<span><input type="checkbox" id= "${tsk.index}"><label for= "${tsk.index}">${tsk.description}</label></span><i class="fas fa-ellipsis-v"></i>`;
-    task.classList.add('task-style');
-    list.appendChild(task);
-  });
-};
-
-showList();
+window.addEventListener('load', retrivedata);
