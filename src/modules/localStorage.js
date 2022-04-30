@@ -1,13 +1,14 @@
 const entryTask = document.getElementById('newTask');
 
 /* eslint-disable */
-export default class Task {
+class Task {
   constructor(description, completed = false, index) {
     this.description = description,
     this.completed = completed,
     this.index = index
   }
 }
+
 /* elint-enable */
 const storageAvailable = (type) => {
   try {
@@ -48,7 +49,7 @@ export const retrivedata = () => {
     const line = document.createElement('li');
     line.innerHTML = `
     <span>
-      <input type="checkbox" id= "id-${tsk.index}">
+      <input type="checkbox" id= "id-${tsk.index}" ${tsk.completed?'checked':''}>
       <input type="text" id="tx-${tsk.index}" value= "${tsk.description}" disabled>
     </span>
     <i class= "menu" id="${tsk.index}">__</i>`;

@@ -1,7 +1,7 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# To Do list: add & remove
-> In this project, I implemented the CRUD (create, update, delete) methods.
+# To Do list: Interactive List
+> In this project, I add some functionality to the application to make it interactive. The user will also be able to mark task completion by selecting the corresponding checkbox (or undo it by unchecking the checkbox). The updated tasks list will be stored in local storage.
 
 ## Built With
 
@@ -37,15 +37,16 @@ Open Git Bash and execute the following commands:
 
 ### Usage
 
-Inicialize the package.json with the comand: npm init -y
-Then change the files in ./src
-Finally write npm start on the command line.
+Inicialize the package.json with the comand: 
+{npm init -y}
+Then change the files in {./src}
+Finally write {npm} start on the {command} line.
 
 ### Deployment
 
 No needed.
 
-## Authors
+## Author
 
 👤 **Mariana Revilla Lérida**
 
