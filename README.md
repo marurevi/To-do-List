@@ -12,7 +12,7 @@
 
 ## Live Demo
 
-Not required.
+You can see the [Live Demo](https://marurevi.github.io/To-do-List/) here. 
 
 
 ## Getting Started
