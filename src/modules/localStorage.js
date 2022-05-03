@@ -1,15 +1,5 @@
 const entryTask = document.getElementById('newTask');
 
-/* eslint-disable */
-class Task {
-  constructor(description, completed = false, index) {
-    this.description = description,
-    this.completed = completed,
-    this.index = index
-  }
-}
-
-/* elint-enable */
 const storageAvailable = (type) => {
   try {
     const storage = window[type];
@@ -34,7 +24,11 @@ const storageAvailable = (type) => {
 export const savedata = () => {
   const listOnStorage = JSON.parse(localStorage.getItem('toDoList')) || [];
   if (storageAvailable('localStorage')) {
-    const listElement = new Task(`${entryTask.value}`, false, JSON.parse(`${listOnStorage.length + 1}`));
+    const listElement = {
+      description: `${entryTask.value}`,
+      completed: false,
+      index: JSON.parse(`${listOnStorage.length + 1}`),
+    };
     listOnStorage.push(listElement);
     localStorage.setItem('toDoList', JSON.stringify(listOnStorage));
   }
@@ -49,7 +43,7 @@ export const retrivedata = () => {
     const line = document.createElement('li');
     line.innerHTML = `
     <span>
-      <input type="checkbox" id= "id-${tsk.index}" ${tsk.completed?'checked':''}>
+      <input type="checkbox" id= "id-${tsk.index}" ${tsk.completed ? 'checked' : ''}>
       <input type="text" id="tx-${tsk.index}" value= "${tsk.description}" disabled>
     </span>
     <i class= "menu" id="${tsk.index}">__</i>`;
