@@ -1,5 +1,6 @@
 import './style.css';
-import { savedata, retrivedata } from './modules/localStorage.js';
+import { retrivedata } from './modules/localStorage.js';
+import { savedata } from './modules/saveData.js';
 
 const entryTask = document.getElementById('newTask');
 const clearBtn = document.querySelector('.clear');

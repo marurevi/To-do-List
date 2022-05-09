@@ -1,56 +1,13 @@
-const entryTask = document.getElementById('newTask');
-
-const storageAvailable = (type) => {
-  try {
-    const storage = window[type];
-    const x = '__storage_test__';
-    storage.setItem(x, x);
-    storage.removeItem(x);
-    return true;
-  } catch (e) {
-    return e instanceof DOMException && (
-    // everything except Firefox
-      e.code === 22
-    // Firefox
-    || e.code === 1014
-    // test name field too, because code might not be present
-    // everything except Firefox
-    || e.name === 'QuotaExceededError'
-    // Firefox
-    || e.name === 'NS_ERROR_DOM_QUOTA_REACHED');
-  }
-};
-
-export const savedata = () => {
-  const listOnStorage = JSON.parse(localStorage.getItem('toDoList')) || [];
-  if (storageAvailable('localStorage')) {
-    const listElement = {
-      description: `${entryTask.value}`,
-      completed: false,
-      index: JSON.parse(`${listOnStorage.length + 1}`),
-    };
-    listOnStorage.push(listElement);
-    localStorage.setItem('toDoList', JSON.stringify(listOnStorage));
-  }
-};
+export const entryTask = document.getElementById('newTask');
+import { displayer } from "./displayOnUI.js";
 
 export const retrivedata = () => {
   const listOnStorage = JSON.parse(localStorage.getItem('toDoList')) || [];
   const listDisplay = document.getElementById('uList');
   document.querySelectorAll('.task-style').forEach((t) => t.remove());
 
-  listOnStorage.forEach((tsk) => {
-    const line = document.createElement('li');
-    line.innerHTML = `
-    <span>
-      <input type="checkbox" id= "id-${tsk.index}" ${tsk.completed ? 'checked' : ''}>
-      <input type="text" id="tx-${tsk.index}" value= "${tsk.description}" disabled>
-    </span>
-    <i class= "menu" id="${tsk.index}">__</i>`;
-    line.classList.add('task-style');
-    line.id = `li-${tsk.index}`;
-    listDisplay.appendChild(line);
-  });
+  // functionCall here () =>   =>   =>   =>
+  displayer(listOnStorage, listDisplay);
 
   /* Checkbox part */
   const checkBox = document.querySelectorAll('input[type=checkbox]');
